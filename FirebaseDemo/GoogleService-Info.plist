@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>729675900010-86girt6v56mm1p0rckkhhmdrgu89hgmq.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.729675900010-86girt6v56mm1p0rckkhhmdrgu89hgmq</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC9GYr06abCUXFPRrkWWYAH9w0jGoNjyWA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>729675900010</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.rikkeisoft.FirebaseDemo</string>
+	<key>PROJECT_ID</key>
+	<string>fir-demo-cbc79</string>
+	<key>STORAGE_BUCKET</key>
+	<string>fir-demo-cbc79.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:729675900010:ios:65bebb85c5d7621e</string>
+	<key>DATABASE_URL</key>
+	<string>https://fir-demo-cbc79.firebaseio.com</string>
+</dict>
+</plist>
