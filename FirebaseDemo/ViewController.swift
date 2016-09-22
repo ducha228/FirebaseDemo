@@ -9,12 +9,15 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
+import FirebaseAuth
 
 class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     var items = [GroceryItem]()
     let groceryRef = FIRDatabase.database().reference(withPath: "grocery-items")
+    let userRef = FIRDatabase.database().reference(withPath: "online")
+    var user: FIRUser?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,11 +31,35 @@ class ViewController: UIViewController {
             self.tableView.reloadData()
         })
         
+        FIRAuth.auth()?.addStateDidChangeListener({ (auth, user) in
+            if let _ = user {
+                self.user = user!
+                let currentUserRef = self.userRef.child(self.user!.uid)
+                currentUserRef.setValue(self.user?.email)
+                currentUserRef.onDisconnectRemoveValue()
+            } else {
+                self.navigationController?.popToRootViewController(animated: true)
+                if let _ = self.user {
+                    let currentUserRef = self.userRef.child(self.user!.uid)
+                    currentUserRef.removeValue()
+                }
+            }
+        })
+        navigationItem.backBarButtonItem = nil
+        navigationItem.hidesBackButton = true
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func logoutDidPush(_  sender: UIBarButtonItem) {
+        do {
+            try FIRAuth.auth()?.signOut()
+        } catch let e {
+            print(e)
+        }
     }
 
     @IBAction func addDidPush(_ sender: UIBarButtonItem) {
@@ -41,8 +68,9 @@ class ViewController: UIViewController {
             guard let textField = alert.textFields?.first, let text = textField.text, text.characters.count > 0 else {
                 return
             }
-            let groceryItem = GroceryItem(name: text, createdDate: Date())
+            let groceryItem = GroceryItem(name: text, createdDate: Date(), creator: self.user?.email ?? "")
             let groceryItemRef = self.groceryRef.child(text)
+            
             groceryItemRef.setValue(groceryItem.toDic())
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -50,6 +78,27 @@ class ViewController: UIViewController {
         alert.addAction(saveAction)
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
+        
+        let pic = UIPrintInteractionController.shared
+        
+        let printInfo = UIPrintInfo.printInfo()
+        printInfo.jobName = "Demo print"
+        printInfo.outputType = .general
+        
+        pic.printInfo = printInfo
+        
+        let textFormatter = UISimpleTextPrintFormatter(text: "Print body")
+        textFormatter.startPage = 0
+        textFormatter.perPageContentInsets = UIEdgeInsetsMake(72, 72, 72, 72)
+        textFormatter.maximumContentWidth = 6 * 72
+        
+        pic.printFormatter = textFormatter
+        
+        pic.present(from: sender, animated: true) { (pic, completed, error) in
+            if !completed && error != nil {
+                print("Print error \(error)")
+            }
+        }
     }
 
 }
@@ -71,5 +120,12 @@ extension ViewController : UITableViewDataSource {
         cell.detailTextLabel?.text = dateFormatter.string(from: grocery.createdDate)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let grocery = items[indexPath.row]
+            grocery.ref?.removeValue()
+        }
     }
 }

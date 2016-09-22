@@ -13,10 +13,14 @@ import FirebaseDatabase
 struct GroceryItem {
     var name: String
     var createdDate: Date
+    var creator: String
+    var ref: FIRDatabaseReference?
     
-    init(name : String, createdDate : Date) {
+    init(name : String, createdDate : Date, creator : String) {
         self.name = name
         self.createdDate = createdDate
+        self.creator = creator
+        ref = nil
     }
     
     init(snapshot: FIRDataSnapshot) {
@@ -25,13 +29,15 @@ struct GroceryItem {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
         createdDate = (createdDateStr != nil) ? dateFormatter.date(from: createdDateStr!)! : Date()
+        creator = (snapshot.value as! [String : AnyObject])["creator"] as? String ?? ""
+        ref = snapshot.ref
     }
     
     func toDic() -> AnyObject {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
         
-        let dic = ["name" : name, "created_date" : dateFormatter.string(from: createdDate)]
+        let dic = ["name" : name, "created_date" : dateFormatter.string(from: createdDate), "creator" : creator]
         return dic as AnyObject
     }
 }

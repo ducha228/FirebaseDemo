@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>729675900010-86girt6v56mm1p0rckkhhmdrgu89hgmq.apps.googleusercontent.com</string>
+	<string>132689419011-nu7v0udb6i3pq1utg53kmq3irg7t0pnc.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.729675900010-86girt6v56mm1p0rckkhhmdrgu89hgmq</string>
+	<string>com.googleusercontent.apps.132689419011-nu7v0udb6i3pq1utg53kmq3irg7t0pnc</string>
 	<key>API_KEY</key>
-	<string>AIzaSyC9GYr06abCUXFPRrkWWYAH9w0jGoNjyWA</string>
+	<string>AIzaSyAbpr-u9MCFElhE8Yb-3oVZLYThvqZ5mag</string>
 	<key>GCM_SENDER_ID</key>
-	<string>729675900010</string>
+	<string>132689419011</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.rikkeisoft.FirebaseDemo</string>
+	<string>com.hand.MyGrocery</string>
 	<key>PROJECT_ID</key>
-	<string>fir-demo-cbc79</string>
+	<string>mygrocery-9d251</string>
 	<key>STORAGE_BUCKET</key>
-	<string>fir-demo-cbc79.appspot.com</string>
+	<string>mygrocery-9d251.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:729675900010:ios:65bebb85c5d7621e</string>
+	<string>1:132689419011:ios:885d970cd88ba2f5</string>
 	<key>DATABASE_URL</key>
-	<string>https://fir-demo-cbc79.firebaseio.com</string>
+	<string>https://mygrocery-9d251.firebaseio.com</string>
 </dict>
 </plist>
