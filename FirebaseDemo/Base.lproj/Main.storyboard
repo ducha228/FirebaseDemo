@@ -25,18 +25,18 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7eh-vd-NI7" id="5BC-74-5Sd">
-                                            <frame key="frameInset" width="375" height="43.5"/>
+                                            <frame key="frameInset" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="L3e-7e-sc5">
-                                                    <frame key="frameInset" minX="15" minY="5" width="33.5" height="20.5"/>
+                                                    <frame key="frameInset" minX="15" minY="4" width="34" height="21"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AQS-A4-NRp">
-                                                    <frame key="frameInset" minX="15" minY="25.5" width="44" height="14.5"/>
+                                                    <frame key="frameInset" minX="15" minY="25" width="44" height="15"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
@@ -51,13 +51,22 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="phD-UH-6Jf"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lkD-3K-Ezn" customClass="GADBannerView">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" placeholder="YES" id="2xY-In-Nid"/>
+                                    <constraint firstAttribute="height" constant="50" id="KOt-h4-GNq"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="DMk-px-3K1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="3II-Xs-Y3z"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="lkD-3K-Ezn" secondAttribute="bottom" id="52W-S8-qlK"/>
                             <constraint firstAttribute="trailing" secondItem="DMk-px-3K1" secondAttribute="trailing" id="BA9-cZ-mjB"/>
                             <constraint firstItem="DMk-px-3K1" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="XnU-he-3BB"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="DMk-px-3K1" secondAttribute="bottom" id="omu-dI-jtF"/>
+                            <constraint firstItem="lkD-3K-Ezn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mQT-tY-TMB"/>
+                            <constraint firstItem="lkD-3K-Ezn" firstAttribute="top" secondItem="DMk-px-3K1" secondAttribute="bottom" id="sq5-CB-3C4"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="H1Q-L8-W17">
@@ -73,12 +82,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bannerAdView" destination="lkD-3K-Ezn" id="fH7-HR-udb"/>
                         <outlet property="tableView" destination="DMk-px-3K1" id="oNd-CB-Npg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1946" y="93"/>
+            <point key="canvasLocation" x="1944.8" y="92.203898050974516"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zfD-bH-hfT">
@@ -173,17 +183,27 @@
                                     <constraint firstAttribute="bottom" secondItem="UcH-1f-ljo" secondAttribute="bottom" id="xYo-gS-fXm"/>
                                 </constraints>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="APO-ed-ICv" customClass="GADBannerView">
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="hbg-I7-0VP"/>
+                                    <constraint firstAttribute="height" constant="50" id="sVD-7N-Bxy"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="APO-ed-ICv" firstAttribute="centerX" secondItem="MKw-aI-51o" secondAttribute="centerX" id="Cnm-09-fqX"/>
                             <constraint firstItem="V7P-UC-eW9" firstAttribute="leading" secondItem="MKw-aI-51o" secondAttribute="leading" id="FW3-ee-VWe"/>
                             <constraint firstAttribute="trailing" secondItem="V7P-UC-eW9" secondAttribute="trailing" id="Hik-8b-rAQ"/>
+                            <constraint firstItem="APO-ed-ICv" firstAttribute="top" secondItem="Vzi-Wh-XKF" secondAttribute="bottom" id="KFH-ar-sqC"/>
                             <constraint firstItem="V7P-UC-eW9" firstAttribute="centerX" secondItem="MKw-aI-51o" secondAttribute="centerX" id="Ub7-kE-kAO"/>
                             <constraint firstItem="le5-SX-L90" firstAttribute="top" secondItem="V7P-UC-eW9" secondAttribute="bottom" constant="50" id="jbo-LY-d39"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="HUT-oO-NGG"/>
                     <connections>
+                        <outlet property="bannerAdView" destination="APO-ed-ICv" id="cyR-Ej-w8l"/>
                         <outlet property="emailTextField" destination="SFU-b5-RtN" id="x9I-Se-yJe"/>
                         <outlet property="passwordTextField" destination="R9s-NV-eSg" id="gGx-J4-A00"/>
                         <outlet property="scrollContainer" destination="V7P-UC-eW9" id="0e0-hp-53J"/>

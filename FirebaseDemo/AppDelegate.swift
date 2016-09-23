@@ -11,6 +11,7 @@ import Firebase
 import FirebaseDatabase
 import FirebaseMessaging
 import UserNotifications
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -33,6 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application.registerUserNotificationSettings(userNotificationSetting)
             application.registerForRemoteNotifications()
         }
+        
+        GADMobileAds.configure(withApplicationID: "ca-app-pub-4340526482547199~7834302665")
         
         FIRDatabase.database().persistenceEnabled = true
         return true

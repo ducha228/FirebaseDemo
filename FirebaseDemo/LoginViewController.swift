@@ -8,11 +8,13 @@
 
 import UIKit
 import FirebaseAuth
+import GoogleMobileAds
 
 class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var scrollContainer: UIScrollView!
+    @IBOutlet weak var bannerAdView: GADBannerView!
 
     var activeTextField: UITextField?
     
@@ -32,6 +34,15 @@ class LoginViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        bannerAdView.adUnitID = "ca-app-pub-4340526482547199/1787769067"
+        bannerAdView.rootViewController = self
+        bannerAdView.adSize = kGADAdSizeSmartBannerPortrait
+        bannerAdView.delegate = self
+        bannerAdView.load(GADRequest())
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -70,5 +81,15 @@ extension LoginViewController : UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.resignFirstResponder()
+    }
+}
+
+extension LoginViewController : GADBannerViewDelegate {
+    func adViewDidReceiveAd(_ bannerView: GADBannerView!) {
+        print("Received ad")
+    }
+    
+    func adView(_ bannerView: GADBannerView!, didFailToReceiveAdWithError error: GADRequestError!) {
+        print("Receive ad error: ", error)
     }
 }

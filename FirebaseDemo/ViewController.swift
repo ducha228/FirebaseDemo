@@ -10,9 +10,11 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import FirebaseAuth
+import GoogleMobileAds
 
 class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var bannerAdView: GADBannerView!
 
     var items = [GroceryItem]()
     let groceryRef = FIRDatabase.database().reference(withPath: "grocery-items")
@@ -47,8 +49,18 @@ class ViewController: UIViewController {
         })
         navigationItem.backBarButtonItem = nil
         navigationItem.hidesBackButton = true
+        
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        bannerAdView.adUnitID = "ca-app-pub-4340526482547199/1787769067"
+        bannerAdView.rootViewController = self
+        bannerAdView.adSize = kGADAdSizeSmartBannerPortrait
+        bannerAdView.delegate = self
+        bannerAdView.load(GADRequest())
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -79,26 +91,6 @@ class ViewController: UIViewController {
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
         
-        let pic = UIPrintInteractionController.shared
-        
-        let printInfo = UIPrintInfo.printInfo()
-        printInfo.jobName = "Demo print"
-        printInfo.outputType = .general
-        
-        pic.printInfo = printInfo
-        
-        let textFormatter = UISimpleTextPrintFormatter(text: "Print body")
-        textFormatter.startPage = 0
-        textFormatter.perPageContentInsets = UIEdgeInsetsMake(72, 72, 72, 72)
-        textFormatter.maximumContentWidth = 6 * 72
-        
-        pic.printFormatter = textFormatter
-        
-        pic.present(from: sender, animated: true) { (pic, completed, error) in
-            if !completed && error != nil {
-                print("Print error \(error)")
-            }
-        }
     }
 
 }
@@ -127,5 +119,15 @@ extension ViewController : UITableViewDataSource {
             let grocery = items[indexPath.row]
             grocery.ref?.removeValue()
         }
+    }
+}
+
+extension ViewController : GADBannerViewDelegate {
+    func adViewDidReceiveAd(_ bannerView: GADBannerView!) {
+        print("Received ad")
+    }
+    
+    func adView(_ bannerView: GADBannerView!, didFailToReceiveAdWithError error: GADRequestError!) {
+        print("Receive ad error: ", error)
     }
 }
